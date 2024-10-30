@@ -111,7 +111,7 @@ router.post(
         payload,
         process.env.JWTSECRET,
         {
-          expiresIn: 360000,
+          expiresIn: '1d',
         },
         (error, token) => {
           if (error) throw error;
