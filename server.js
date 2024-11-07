@@ -1,12 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+const cors = require('cors');
 const path = require('path');
 
 dotenv.config({ path: './config/config.env' });
 connectDB();
 
 const app = express();
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.use(express.json({ extended: false }));
 
@@ -19,16 +21,7 @@ app.use("/api/products", require("./routes/product"));
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/orders", require("./routes/order"));
 app.use("/api/address", require("./routes/address"));
-app.use("", require("./routes/stripe"));
+app.use("", require("./routes/momo"));
 
-if (process.env.NODE_ENV === 'production') {
-  // Serve static files from the React app
-  app.use(express.static(path.join(__dirname, 'client/build')));
 
-  // Route all other requests to the React app
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'));
-  });
-}
-
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server chạy trên cổng ${PORT}`));

@@ -27,18 +27,18 @@ const ProductDetails = () => {
       </p>
       <div className="amount font-bold flex items-center justify-between lg:flex-col lg:items-start mb-6">
         <div className="discount-price items-center flex  lg:w-1/3 justify-between">
-          <div className="price text-3xl">${product.discountPrice}</div>
+          <div className="price text-3xl">{product.discountPrice}đ</div>
           <div className="discount text-orange bg-pale-orange w-max px-2 rounded mx-5 h-6 lg:mr-0">
             {Math.floor(
               (product.price / product.price -
                 product.discountPrice / product.price) *
-                100
+              100
             )}
             %
           </div>
         </div>
         <div className="original-price text-grayish-blue line-through lg:mt-2">
-          ${product.price}
+          {product.price}đ
         </div>
       </div>
       <div className="sm:flex lg:mt-8 w-full">
@@ -50,10 +50,10 @@ const ProductDetails = () => {
             -
           </button>
           <input
-            min={0}
+            min={1}
             max={100}
             onChange={(e) => dispatch(quantityCount(e.target.value))}
-            className="quantity focus:outline-none text-dark-blue bg-light-grayish-blue font-bold flex text-center w-full"
+            className="quantity focus:outline-none text-dark-blue bg-light-grayish-blue font-bold flex text-center w-full appearance-none"
             type="number"
             name="quantity"
             value={quantity}
@@ -74,7 +74,7 @@ const ProductDetails = () => {
           <i className="cursor-pointer text-white text-xl leading-0 pr-3">
             <ion-icon name="cart-outline"></ion-icon>
           </i>
-          Add to cart
+          Thêm vào giỏ hàng
         </button>
       </div>
     </>

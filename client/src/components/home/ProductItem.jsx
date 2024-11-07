@@ -33,10 +33,10 @@ const ProductItem = ({ product, containFilter }) => {
             </Link>
             <div className="flex justify-between items-center text-sm">
               <div className="discount-price font-bold">
-                ${product.discountPrice}
+                {product.discountPrice}đ
               </div>
               <div className="original-price text-grayish-blue line-through">
-                ${product.price}
+                {product.price}đ
               </div>
               <div className="discount text-orange bg-pale-orange font-bold w-max px-2 rounded mx-5 h-6">
                 {Math.floor(

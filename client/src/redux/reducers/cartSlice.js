@@ -7,7 +7,7 @@ export const createUserCart = createAsyncThunk('cart/createUserCart', async ({ p
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
-      
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -77,10 +77,10 @@ const cartSlice = createSlice({
     quantityCount: (state, action) => {
       switch (action.payload) {
         case '':
-          state.quantity = 0
+          state.quantity = 1
           break;
         case 'decrease':
-          state.quantity = Math.max(state.quantity - 1, 0)
+          state.quantity = Math.max(state.quantity - 1, 1)
           break;
         case 'increase':
           state.quantity = Math.min(state.quantity + 1, 100)
@@ -129,7 +129,7 @@ const cartSlice = createSlice({
       state.total = state.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0)
       state.amountTotal = state.cartItems.map(item => item.itemTotal).reduce((a, b) => a + b, 0)
     },
-    emptyCartOnLogoout: (state, action) => {
+    emptyCartOnLogout: (state, action) => {
       state.cartItems = []
       state.userCartItems = []
     },
@@ -172,5 +172,5 @@ const cartSlice = createSlice({
 }
 )
 
-export const { cartDisplay, addToCart, quantityCount, deleteItem, setTotals, emptyCartOnLogoout, emptyCart } = cartSlice.actions;
+export const { cartDisplay, addToCart, quantityCount, deleteItem, setTotals, emptyCartOnLogout, emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;

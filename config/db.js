@@ -6,7 +6,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
     });
 
-    console.log("MongoDB Connected...");
+    console.log("Kết nối CSDL thành công");
   } catch (err) {
     console.error(err.message);
     process.exit(1);

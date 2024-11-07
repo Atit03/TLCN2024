@@ -120,7 +120,7 @@ const AddressForm = () => {
             htmlFor="firstname"
             className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
           >
-            First Name
+            Họ và tên đệm
           </label>
         </div>
         <div className="relative mt-5 w-full lg:w-[45%]">
@@ -146,7 +146,7 @@ const AddressForm = () => {
             htmlFor="lastname"
             className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
           >
-            Last Name
+            Tên
           </label>
         </div>
         <div className="relative mt-5 w-full">
@@ -170,7 +170,7 @@ const AddressForm = () => {
             htmlFor="number"
             className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
           >
-            Phone Number
+            Số điện thoại
           </label>
         </div>
         <div className="relative mt-5 w-full">

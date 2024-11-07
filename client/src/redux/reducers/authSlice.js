@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk("auth/loginUser", async ({ email, pass
         'Content-Type': 'application/json',
       },
     }
-    
+
     let res = await axios.post("/api/auth", { email, password }, config)
     let data = res.data
 

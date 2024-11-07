@@ -35,15 +35,15 @@ const MyRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/collections" element={<Collections />} />
-        <Route path="/collections/:collection" element={<Collections />} />
+        {/* <Route path="/collections/:collection" element={<Collections />} /> */}
         <Route path="/products/" element={<Products />} />
         <Route path="/products/men" element={<Men />} />
         <Route path="/products/women" element={<Women />} />
         <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={user ? <Navigate to="/" replace={true}  /> : <Login />} />
-        <Route path="/register" element={user ? <Navigate to="/" replace={true}  /> : <Register />} />
-        <Route path="/user-profile" element={ <UserProfile/>}>
+        <Route path="/login" element={user ? <Navigate to="/" replace={true} /> : <Login />} />
+        <Route path="/register" element={user ? <Navigate to="/" replace={true} /> : <Register />} />
+        <Route path="/user-profile" element={<UserProfile />}>
           <Route path="" element={<MyAccount />} />
           <Route path="orders" element={<MyOrders />} />
           <Route path="addresses" element={<MyAddress />} />
@@ -51,7 +51,7 @@ const MyRoutes = () => {
           <Route path="password" element={<Password />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-        <Route path="/checkout" element={ (userInfo? userCartItems.length <1 : cartItems.length<1)  ? <Navigate to="/products" replace={true}  /> : <Checkout />} />
+        <Route path="/checkout" element={(userInfo ? userCartItems.length < 1 : cartItems.length < 1) ? <Navigate to="/products" replace={true} /> : <Checkout />} />
         <Route path="/payment" element={<PaymentSuccessful />} />
       </Routes>
     </Layout>

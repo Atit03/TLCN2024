@@ -25,7 +25,7 @@ const ProductPage = () => {
   return (
     <section className="min-h-[70vh] lg:min-h-[80vh] product-container lg:flex lg:items-center lg:gap-x-12 xl:gap-x-24 lg:px-20 xl:px-40 lg:py-20 lg:m-auto lg:mt-2 lg:max-w-8xl">
       <h1 className="absolute w-1 h-1 overflow-hidden p-0 -m-1">
-        Product page
+        Trang sản phẩm
       </h1>
       {!error ? (
         <>
@@ -51,7 +51,7 @@ const ProductPage = () => {
       ) : (
         <>
           <p className=" mt-20 text-center text-very-dark-blue">
-            {errMsg}. Reload page
+            {errMsg}. Tải lại trang
           </p>
         </>
       )}

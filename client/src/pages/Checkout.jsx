@@ -41,7 +41,7 @@ const Checkout = () => {
     <div className="bg-[#f9f9f9]">
       <div className="max-w-7xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:px-8 ">
         <div className="max-w-2xl mx-auto lg:max-w-none">
-          <h2 className="sr-only">Checkout</h2>
+          <h2 className="sr-only">Thanh toán</h2>
 
           <div className="relative flex flex-col lg:flex-row lg:gap-x-12 xl:gap-x-16">
             <div className="order-2 lg:order-1 bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16 h-fit">
@@ -73,12 +73,12 @@ const Checkout = () => {
                       <Link to="/login">
                         <p className="text-sm border-b border-b-orange">
                           <span aria-hidden="true">
-                            Already have an account?
+                            Bạn đã có tài khoản?
                           </span>
                           <span className="sr-only">
-                            Already have an account?
+                            Bạn đã có tài khoản?
                           </span>
-                          {""} Log in
+                          {""} Đăng nhập
                         </p>
                       </Link>
                     </div>
@@ -91,7 +91,7 @@ const Checkout = () => {
                           className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                           placeholder="First Name"
                           {...register("firstname", {
-                            required: "Please enter your first name",
+                            required: "Vui lòng nhập họ và tên đệm",
                           })}
                         />
                         {errors.firstname && (
@@ -103,7 +103,7 @@ const Checkout = () => {
                           htmlFor="firstname"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                         >
-                          First Name
+                          Họ và tên đệm
                         </label>
                       </div>
                       <div className="relative mt-5 w-full">
@@ -114,7 +114,7 @@ const Checkout = () => {
                           className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                           placeholder="Last Name"
                           {...register("lastname", {
-                            required: "Please enter your last name",
+                            required: "Vui lòng nhập tên",
                           })}
                         />
                         {errors.lastname && (
@@ -126,7 +126,7 @@ const Checkout = () => {
                           htmlFor="lastname"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                         >
-                          Last Name
+                          Tên
                         </label>
                       </div>
                       <div className="relative mt-5 w-full">
@@ -137,7 +137,7 @@ const Checkout = () => {
                           className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                           placeholder="number"
                           {...register("phone", {
-                            required: "Please enter your phone number",
+                            required: "Vui lòng nhập số điện thoại",
                           })}
                         />
                         {errors.phone && (
@@ -149,7 +149,7 @@ const Checkout = () => {
                           htmlFor="number"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                         >
-                          Phone Number
+                          Số điện thoại
                         </label>
                       </div>
                       <div className="relative mt-5 w-full">
@@ -161,7 +161,7 @@ const Checkout = () => {
                           className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                           placeholder="email"
                           {...register("email", {
-                            required: "Please enter your email",
+                            required: "Vui lòng nhập email",
                           })}
                         />
                         {errors.email && (
@@ -173,7 +173,7 @@ const Checkout = () => {
                           htmlFor="email"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                         >
-                          Email address
+                          Email
                         </label>
                       </div>
                     </div>
@@ -181,7 +181,7 @@ const Checkout = () => {
 
                   <div className="mt-10 border-t border-gray-200 pt-10">
                     <h3 className="text-lg font-bold text-very-dark-blue">
-                      Shipping information
+                      Thông tin giao hàng
                     </h3>
 
                     <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
@@ -198,7 +198,7 @@ const Checkout = () => {
                           htmlFor="company"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                         >
-                          Company
+                          Nơi làm việc
                         </label>
                       </div>
                       <div className="sm:col-span-2 relative mt-5 w-full">
@@ -209,7 +209,7 @@ const Checkout = () => {
                           className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                           placeholder="address"
                           {...register("address", {
-                            required: "Please enter your address",
+                            required: "Hãy nhập địa chỉ",
                           })}
                         />
                         {errors.address && (
@@ -237,7 +237,7 @@ const Checkout = () => {
                           htmlFor="apartment"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                         >
-                          Apartment, suite, etc. (optional)
+                          Căn hộ, phòng trọ, v.v. (tùy chọn)
                         </label>
                       </div>
                       <div className="relative mt-5 w-full">
@@ -260,7 +260,7 @@ const Checkout = () => {
                           htmlFor="city"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                         >
-                          City
+                          Tỉnh/Thành phố
                         </label>
                       </div>
                       <div className="relative mt-5 w-full">
@@ -359,7 +359,7 @@ const Checkout = () => {
                       <>
                         {/* CHECK IF THERE IS A DEFAULT ADDRESS */}
                         {addresses.filter((address) => address.checked).length >
-                        0 ? (
+                          0 ? (
                           <>
                             {addresses
                               .filter((address) => address.checked)

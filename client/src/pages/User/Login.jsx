@@ -43,7 +43,7 @@ const Login = () => {
       <div className="wrapper w-full min-h-screen py-12 sm:py-8 flex items-center justify-center">
         <div className="wrapper w-5/6 sm:w-3/4 md:w-3/5 xl:w-2/5 container py-16 px-8 sm:px-12 bg-white relative">
           <h1 className="title text-xl sm:text-2xl lg:text-3xl font-bold text-very-dark-blue mb-12">
-            SIGN IN
+            Đăng nhập
           </h1>
           <form
             className="flex flex-wrap justify-between w-full"
@@ -69,7 +69,7 @@ const Login = () => {
                 htmlFor="email"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
               >
-                Username or Email
+                Email
               </label>
             </div>
             <div className="relative w-full  mb-6 py-3">
@@ -86,7 +86,7 @@ const Login = () => {
                 htmlFor="password"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
               >
-                Password
+                Mật khẩu
               </label>
             </div>
             <button
@@ -105,7 +105,7 @@ const Login = () => {
                   <span className="sr-only">Loading...</span>
                 </div>
               ) : (
-                <>LOGIN</>
+                <>Đăng nhập</>
               )}
             </button>
             <br />
@@ -115,14 +115,14 @@ const Login = () => {
                 className="mb-5 lg:mb-0 border-b-2 border-solid hover:border-orange border-transparent transition-all"
                 href="/"
               >
-                FORGET PASSWORD?
+                Quên mật khẩu?
               </a>
               <NavLink
                 to="/register"
                 className="border-b-2 border-solid border-transparent hover:border-orange transition-color"
                 href="/"
               >
-                CREATE NEW ACCOUNT
+                Tạo tài khoản mới
               </NavLink>
             </div>
           </form>

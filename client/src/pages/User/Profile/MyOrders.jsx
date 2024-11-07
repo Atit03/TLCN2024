@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const MyOrders = () => {
-  document.title = "My Orders"
+  document.title = "Đơn hàng"
 
   const { orders } = useSelector((state) => state.order);
   const { userInfo } = useSelector((state) => state.auth);
@@ -11,10 +11,10 @@ const MyOrders = () => {
   return (
     <div className="">
       <h3 className="text-xl leading-6 font-bold text-very-dark-blue">
-        My Orders
+        Đơn hàng
       </h3>
       <p className="mt-1 max-w-2xl text-sm text-dark-grayish-blue">
-        Order history details
+        Chi tiết lịch sử đơn hàng
       </p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
 
@@ -22,7 +22,7 @@ const MyOrders = () => {
         {userInfo && orders.length > 0 ? (
           <>
             <h3 className="sr-only">
-              Order placed on <time dateTime="2021-07-06">Jul 6, 2021</time>
+              Đặt hàng <time dateTime="2021-07-06">20 tháng 10, 2024</time>
             </h3>
             {orders.map((order, index) => (
               <>
@@ -128,7 +128,7 @@ const MyOrders = () => {
           </>
         ) : (
           <>
-            <p className="text-xl">No Orders yet.</p>
+            <p className="text-xl">Chưa có đơn hàng nào.</p>
           </>
         )}
       </div>

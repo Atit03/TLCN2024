@@ -30,8 +30,8 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 router.get("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const userId = req.params.id;
-    const address = await Address.find({user:userId});
-    
+    const address = await Address.find({ user: userId });
+
     res.status(200).json(address);
   } catch (err) {
     if (err.name === "CastError") {
@@ -49,8 +49,8 @@ router.get("/:id", verifyTokenAndAuthorization, async (req, res) => {
 router.post(
   "/",
   verifyToken,
-  body("firstname", "Please enter firstname").not().isEmpty(),
-  body("lastname", "Please enter lastname").not().isEmpty(),
+  body("firstname", "Hãy nhập họ và tên đệm").not().isEmpty(),
+  body("lastname", "Hãy nhập tên").not().isEmpty(),
   body("phone", "Please enter phone not").not().isEmpty(),
   body("streetAddress", "Please enter the street address").not().isEmpty(),
   body("city", "Please enter city").not().isEmpty(),
@@ -77,7 +77,7 @@ router.post(
 // @ route    PUT api/address
 // @desc      Update address
 // @ access   Private
-router.put("/:id", verifyTokenAndUser , async (req, res) => {
+router.put("/:id", verifyTokenAndUser, async (req, res) => {
   try {
     const address = await Address.findById(req.params.id);
     const updatedAddress = await Address.findByIdAndUpdate(
