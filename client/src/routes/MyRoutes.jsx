@@ -22,6 +22,14 @@ import MyAddress from "../pages/User/Profile/MyAddress";
 import Notifications from "../pages/User/Profile/Notifications";
 import Password from "../pages/User/Profile/Password";
 import PaymentSuccessful from "../components/PaymentSuccessful";
+import AdminDashboard from "../pages/Admin/AdminDashboard";
+import ReadAllUsers from "../pages/Admin/Users/ReadAllUsers";
+import ReadProducts from "../pages/Admin/Products/ReadProducts";
+import ReadOrders from "../pages/Admin/Orders/ReadOrders";
+import UpdateUser from "../pages/Admin/Users/UpdateUser";
+import UserDetail from "../pages/Admin/Users/UserDetail";
+
+
 
 const MyRoutes = () => {
   const user = false;
@@ -51,6 +59,14 @@ const MyRoutes = () => {
           <Route path="password" element={<Password />} />
           <Route path="settings" element={<Settings />} />
         </Route>
+        <Route path="/admin-dashboard" element={<AdminDashboard />}>
+          <Route path="" element={<MyAccount />} />
+          <Route path="users" element={<ReadAllUsers/>}/>
+          <Route path="products" element={<ReadProducts />} />
+          <Route path="orders" element={<ReadOrders />} />
+        </Route>
+        <Route path="update-user/:id" element={<UpdateUser />} />
+        <Route path="/user-detail/:id" element={<UserDetail />} />
         <Route path="/checkout" element={(userInfo ? userCartItems.length < 1 : cartItems.length < 1) ? <Navigate to="/products" replace={true} /> : <Checkout />} />
         <Route path="/payment" element={<PaymentSuccessful />} />
       </Routes>

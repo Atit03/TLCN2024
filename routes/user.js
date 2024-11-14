@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require('mongoose');
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
@@ -13,17 +14,25 @@ dotenv.config({ path: "../config/config.env" });
 // @ access Private
 router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).select("-password");
+    const userId = req.params.id;
+
+    // Kiểm tra xem id có phải là một ObjectId hợp lệ không
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ msg: "ID người dùng không hợp lệ" });
+    }
+
+    const user = await User.findById(userId).select("-password");
+    
+    if (!user) {
+      return res.status(404).json({ msg: "Không tìm thấy người dùng" });
+    }
+
     res.status(200).json(user);
   } catch (err) {
-    if (err.name === "CastError") {
-      return res.status(400).json({ msg: "user doesn't exist" });
-    }
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).send("Lỗi server");
   }
 });
-
 // @ route GET api/user
 // @ desc  Get registered user
 // @ access Private
@@ -54,6 +63,30 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     ]);
     res.status(200).json(data);
   } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+// @route   DELETE api/user/:id
+// @desc    Delete user by id
+// @access  Private (only admin can delete users)
+router.delete("/delete/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    // Tìm và xóa người dùng theo ID từ URL
+    const user = await User.findByIdAndDelete(req.params.id);
+
+    // Kiểm tra xem người dùng có tồn tại không
+    if (!user) {
+      return res.status(400).json({ msg: "User doesn't exist" });
+    }
+
+    // Trả về kết quả thành công
+    res.status(200).json({ msg: "User successfully deleted" });
+  } catch (err) {
+    // Kiểm tra lỗi khi ID không hợp lệ (CastError)
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "User doesn't exist" });
+    }
     console.error(err.message);
     res.status(500).send("Server Error");
   }

@@ -29,7 +29,13 @@ const Register = () => {
     }
     // redirect authenticated user to profile screen
     if (userInfo) {
-      navigate("/user-profile");
+      // Nếu người dùng là admin, chuyển hướng đến trang admin-dashboard
+      if (userInfo.isAdmin) {
+        navigate("/admin-dashboard");
+      } else {
+        // Nếu người dùng không phải admin, chuyển hướng đến trang user-profile
+        navigate("/user-profile");
+      }
     }
     // eslint-disable-next-line
   }, [navigate, userInfo, success]);
