@@ -57,8 +57,8 @@ const AdminDashboard = () => {
                 }
                 x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
               >
-                <ion-icon class="p-2 text-base" name="basket"></ion-icon>
-                <span className="truncate">Nguoi dung</span>
+                <ion-icon class="p-2 text-base" name="person"></ion-icon>
+                <span className="truncate">Người dùng</span>
               </NavLink>
               <NavLink
                 to="products"
@@ -71,7 +71,7 @@ const AdminDashboard = () => {
                 x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
               >
                 <ion-icon class="p-2 text-base" name="basket"></ion-icon>
-                <span className="truncate">San pham</span>
+                <span className="truncate">Sản phẩm</span>
               </NavLink>
               <NavLink
                 to="orders"
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
                 x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
               >
                 <ion-icon class="p-2 text-base" name="basket"></ion-icon>
-                <span className="truncate">Don hang</span>
+                <span className="truncate">Đơn hàng</span>
               </NavLink>
 
               <hr className="text-grayish-blue" />

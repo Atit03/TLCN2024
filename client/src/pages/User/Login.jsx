@@ -120,7 +120,6 @@ const Login = () => {
               <NavLink
                 to="/register"
                 className="border-b-2 border-solid border-transparent hover:border-orange transition-color"
-                href="/"
               >
                 Tạo tài khoản mới
               </NavLink>

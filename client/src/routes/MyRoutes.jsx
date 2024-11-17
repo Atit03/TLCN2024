@@ -26,8 +26,8 @@ import AdminDashboard from "../pages/Admin/AdminDashboard";
 import ReadAllUsers from "../pages/Admin/Users/ReadAllUsers";
 import ReadProducts from "../pages/Admin/Products/ReadProducts";
 import ReadOrders from "../pages/Admin/Orders/ReadOrders";
-import UpdateUser from "../pages/Admin/Users/UpdateUser";
 import UserDetail from "../pages/Admin/Users/UserDetail";
+import ProductDetail from "../pages/Admin/Products/ProductDetail";
 
 
 
@@ -61,12 +61,12 @@ const MyRoutes = () => {
         </Route>
         <Route path="/admin-dashboard" element={<AdminDashboard />}>
           <Route path="" element={<MyAccount />} />
-          <Route path="users" element={<ReadAllUsers/>}/>
+          <Route path="users" element={<ReadAllUsers />} />
           <Route path="products" element={<ReadProducts />} />
           <Route path="orders" element={<ReadOrders />} />
         </Route>
-        <Route path="update-user/:id" element={<UpdateUser />} />
         <Route path="/user-detail/:id" element={<UserDetail />} />
+        <Route path="/product-detail/:id" element={<ProductDetail />} />
         <Route path="/checkout" element={(userInfo ? userCartItems.length < 1 : cartItems.length < 1) ? <Navigate to="/products" replace={true} /> : <Checkout />} />
         <Route path="/payment" element={<PaymentSuccessful />} />
       </Routes>

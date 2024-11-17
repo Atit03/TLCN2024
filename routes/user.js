@@ -22,7 +22,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     }
 
     const user = await User.findById(userId).select("-password");
-    
+
     if (!user) {
       return res.status(404).json({ msg: "Không tìm thấy người dùng" });
     }
@@ -157,5 +157,38 @@ router.post(
     }
   }
 );
+router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const { firstname, lastname, username, email, isAdmin, phone, gender } = req.body;
+
+    // Build user object
+    const userFields = {};
+    if (firstname) userFields.firstname = firstname;
+    if (lastname) userFields.lastname = lastname;
+    if (username) userFields.username = username;
+    if (email) userFields.email = email;
+    if (isAdmin !== undefined) userFields.isAdmin = isAdmin;
+    if (phone) userFields.phone = phone;
+    if (gender) userFields.gender = gender;
+
+    // Update user
+    let user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    user = await User.findByIdAndUpdate(
+      req.params.id,
+      { $set: userFields },
+      { new: true }
+    );
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

@@ -56,7 +56,6 @@ const productSlice = createSlice({
       )
     },
     changeImage: (state, action) => {
-      // CHANGE PREVIEW IMG ON CLICK
       state.curIndex = action.payload.index
     },
     prevPreview: (state, action) => {
@@ -98,13 +97,11 @@ const productSlice = createSlice({
     getFilters: (state, action) => {
       // GET LIST OF ALL COLORS FROM PRODUCTS
       state.colors = Array.from(new Set(state.colors.concat.apply([], (state.filteredProducts.length > 0 ? state.filteredProducts : state.products).map(item => item.categories.at(-1).color)))).sort()
-      // GET LIST OF ALL BRANDS/COMPANIES FROM PRODUCTS 
       state.brands = Array.from(new Set(state.brands.concat.apply([], (state.filteredProducts.length > 0 ? state.filteredProducts : state.products).map(item => item.company)))).sort()
     },
     selectFilters: (state, action) => {
       state.filter = action.payload.filter
 
-      // return an array of true and false based on if the product contains a filter
       if (state.filter.color === '' && state.filter.company === '') {
         state.containFilters = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => true)
       } else

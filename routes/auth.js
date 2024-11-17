@@ -71,9 +71,9 @@ router.post(
         },
         (error, token) => {
           if (error) throw error;
-          const { password, ...others } = user._doc; 
+          const { password, ...others } = user._doc;
           res.json({
-            token, user: {...others}
+            token, user: { ...others }
           });
         }
       );

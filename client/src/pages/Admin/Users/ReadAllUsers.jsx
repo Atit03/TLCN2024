@@ -1,18 +1,23 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ReadAllUsersAdmin = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchField, setSearchField] = useState("lastname");
+  const usersPerPage = 4;
 
   const handleDelete = (_id) => {
-    const token = localStorage.getItem('userToken');
-    axios.delete(`http://localhost:5000/api/users/delete/${_id}`, {
-      headers: {
-        "x-auth-token": token,  // Sử dụng header "x-auth-token"
-      },
-    })
+    const token = localStorage.getItem("userToken");
+    axios
+      .delete(`http://localhost:5000/api/users/delete/${_id}`, {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
       .then(() => {
         getData();
       })
@@ -22,141 +27,118 @@ const ReadAllUsersAdmin = () => {
       });
   };
 
-function getData() {
+  function getData() {
     setIsLoading(true);
-    const token = localStorage.getItem('userToken');
-  
+    const token = localStorage.getItem("userToken");
+
     if (!token) {
       console.error("No token found");
       setIsLoading(false);
-      return;  
+      return;
     }
-  
-    axios.get("http://localhost:5000/api/users", {
-      headers: {
-        "x-auth-token": token,  
-      },
-    })
-    .then((res) => {
-      setData(res.data);
-      setIsLoading(false);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-      console.log("Token: ", token);
-      setIsLoading(false);
-    });
-  }
 
+    axios
+      .get("http://localhost:5000/api/users", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      });
+  }
 
   useEffect(() => {
     getData();
   }, []);
 
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const filteredUsers = data.filter((user) =>
+    user[searchField]?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
-    <section className="mt-28">
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg max-w-2xl md:mx-auto mx-5">
+    <section className="w-full">
+      <div className="mb-4 flex justify-between items-center">
+        <input
+          type="text"
+          placeholder="Tìm kiếm..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border p-2 rounded w-1/3"
+        />
+        <select
+          value={searchField}
+          onChange={(e) => setSearchField(e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value="lastname">Tên</option>
+          <option value="username">Username</option>
+          <option value="email">Email</option>
+        </select>
+      </div>
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
-                FirstName
-              </th>
-              <th scope="col" className="px-6 py-3">
-                LastName
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Admin
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Email
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Read
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Edit
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Delete
-              </th>
+              <th scope="col" className="px-6 py-3 ">Họ và tên đệm</th>
+              <th scope="col" className="px-6 py-3">Tên</th>
+              <th scope="col" className="px-6 py-3">Chức năng</th>
+              <th scope="col" className="px-6 py-3">Email</th>
+              <th scope="col" className="px-6 py-3">Xem</th>
+              <th scope="col" className="px-6 py-3">Xóa</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan="5" className="text-center py-4">
-                  <div role="status" className="flex justify-center">
-                    <svg
-                      aria-hidden="true"
-                      className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                      viewBox="0 0 100 101"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                        fill="currentFill"
-                      />
-                    </svg>
-                    <span className="sr-only">Loading...</span>
-                  </div>
+                <td colSpan="6" className="text-center py-4">
+                  Loading...
                 </td>
               </tr>
-            ) : data.length === 0 ? (
+            ) : currentUsers.length === 0 ? (
               <tr>
-                <td colSpan="5" className="text-center py-4">
-                  No data available
+                <td colSpan="6" className="text-center py-4">
+                  Không có dữ liệu phù hợp
                 </td>
               </tr>
             ) : (
-              data.map((item, index) => (
+              currentUsers.map((item, index) => (
                 <tr
                   key={index}
                   className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
                 >
-                  <td className="px-6 py-4">{item.firstname}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-left">
+                    {item.firstname}
+                  </td>
                   <td className="px-6 py-4">{item.lastname}</td>
-                  <td className="px-6 py-4">{item.isAdmin ? "Admin" : "User"}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-left">
+                    {item.isAdmin ? "Admin" : "Người dùng"}
+                  </td>
                   <td className="px-6 py-4">{item.email}</td>
                   <td className="px-6 py-4">
-                    <Link
-                      to={`/user-detail/${item._id}`}
-                    >
-                      {/* <button className="bg-green-800 px-7 py-1 text-white">
-                        Edit
-                      </button> */}
+                    <Link to={`/user-detail/${item._id}`}>
                       <button className="bg-green-700 px-5 py-1 text-white">
                         Xem
                       </button>
                     </Link>
                   </td>
                   <td className="px-6 py-4">
-                    <Link
-                      to={`/update-user/${item._id}`}
-                    //   onClick={() =>
-                    //     setToLocalStorage(item.id, item.name, item.email)
-                    //   }
-                    >
-                      {/* <button className="bg-green-800 px-7 py-1 text-white">
-                        Edit
-                      </button> */}
-                      <button className="bg-green-700 px-5 py-1 text-white">
-                        Sua
-                      </button>
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4">
                     <button
-                       onClick={() => handleDelete(item._id)}
+                      onClick={() => handleDelete(item._id)}
                       className="bg-red-700 px-5 py-1 text-white"
                       disabled={item.isAdmin}
                     >
-                      Xoa
+                      Xóa
                     </button>
                   </td>
                 </tr>
@@ -164,6 +146,18 @@ function getData() {
             )}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center mt-4">
+        {Array.from({ length: Math.ceil(filteredUsers.length / usersPerPage) }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => paginate(index + 1)}
+            className={`px-4 py-2 mx-1 ${currentPage === index + 1 ? "bg-gray-200" : "bg-blue-500 "
+              }`}
+          >
+            {index + 1}
+          </button>
+        ))}
       </div>
     </section>
   );
